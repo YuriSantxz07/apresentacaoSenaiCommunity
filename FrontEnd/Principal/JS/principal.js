@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!onlineFriendsContainer) return;
         const mockFriends = [
             { id: 'miguel', name: "Miguel Piscki", avatar: "https://randomuser.me/api/portraits/men/22.jpg", status: "online" },
-            { id: 'ana', name: "Ana Silva", avatar: "https://randomuser.me/api/portraits/women/33.jpg", status: "online" },
+            { id: 'senai', name: "Senai", avatar: "https://yt3.googleusercontent.com/wyGnsuVLCBoHStdhQ3Tj7Wr48yb_Oi2e1OmP2Rly99xB6wwe66T64bhCNDZkP5xxNHxF-lsE1A=s900-c-k-c0x00ffffff-no-rj", status: "online" },
             { id: 'vinicius', name: "Vinicius Gallo", avatar: "./img/viniciusGallo.jpg", status: "online" }
         ];
         const friendsHTML = mockFriends.map(friend => `
