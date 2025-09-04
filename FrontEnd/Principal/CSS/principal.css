@@ -991,4 +991,14 @@ body {
     display: none;
   }
 }
+/* /FrontEnd/Principal/CSS/principal.css */
+
+.post-author-link {
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.post-author-link:hover {
+    text-decoration: underline;
+}
 
