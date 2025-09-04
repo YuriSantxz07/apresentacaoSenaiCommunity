@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 id: 6, 
                 author: { 
                     name: "Senai São Carlos", 
-                    avatar: "./img/perfil.png"
+                    avatar: "./img/senai.jpg"
                 }, 
                 content: "Bem-vindos à comunidade oficial do Senai São Carlos! Um espaço para conectar alunos, professores e empresas, compartilhar projetos e impulsionar carreiras. #SenaiSaoCarlos #Inovacao #Tecnologia", 
                 images: [], 
