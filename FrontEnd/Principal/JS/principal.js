@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==================== VARIÁVEIS GLOBAIS ====================
     const currentUser = {
         id: 1,
-        name: "Vinicius Gallo Santos",
-        username: "Vinicius G.",
+        name: "Usuário Temporario",
+        username: "Usuário Temporario",
         avatar: "./img/perfil.png",
         title: "Estudante de ADS",
         connections: 11,
@@ -460,7 +460,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const mockPosts = [
             { 
                 id: 6, 
-                author: { name: "Senai São Carlos", avatar: "./img/perfil.png" }, 
+                author: { 
+                    name: "Senai São Carlos", 
+                    avatar: "./img/senai.jpg"
+                }, 
                 content: "Bem-vindos à comunidade oficial do Senai São Carlos! Um espaço para conectar alunos, professores e empresas, compartilhar projetos e impulsionar carreiras. #SenaiSaoCarlos #Inovacao #Tecnologia", 
                 images: [], 
                 time: "1h", 

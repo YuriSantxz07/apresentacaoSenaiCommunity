@@ -976,5 +976,19 @@ body {
   border: none;
   border-top: 1px solid var(--border-color);
 }
-
 /* FIM DO CÓDIGO CSS */
+
+/* Novo estilo para os ícones SVG na barra de pesquisa */
+.search-result svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.75rem;
+  color: var(--text-secondary);
+}
+/* Adicione este bloco no final do arquivo principal.css */
+@media (max-width: 768px) {
+  .post-options .option-btn[data-type="code"] {
+    display: none;
+  }
+}
+
