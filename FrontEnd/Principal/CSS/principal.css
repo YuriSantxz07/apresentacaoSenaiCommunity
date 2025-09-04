@@ -833,3 +833,9 @@ body {
   margin-right: 0.75rem;
   color: var(--text-secondary);
 }
+/* Adicione este bloco no final do arquivo principal.css */
+@media (max-width: 768px) {
+  .post-options .option-btn[data-type="code"] {
+    display: none;
+  }
+}

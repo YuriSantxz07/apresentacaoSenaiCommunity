@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==================== VARIÁVEIS GLOBAIS ====================
     const currentUser = {
         id: 1,
-        name: "Vinicius Gallo Santos",
-        username: "Vinicius G.",
+        name: "Usuário Temporario",
+        username: "Usuário Temporario",
         avatar: "./img/perfil.png",
         title: "Estudante de ADS",
         connections: 11,
