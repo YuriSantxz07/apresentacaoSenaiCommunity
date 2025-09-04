@@ -13,7 +13,7 @@ const ChatApp = {
         ],
         conversations: [
             {
-                id: 'g1', type: 'group', nome: "Projeto IoT", avatar: "/img/unnamed.png",
+                id: 'g1', type: 'group', nome: "Projeto IoT", avatar: "./img/unnamed.png", // <-- CORRIGIDO AQUI
                 membros: [{ id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" }, { id: 2, nome: "Miguel Piscki", avatar: "https://randomuser.me/api/portraits/men/22.jpg" }, { id: 3, nome: "Ana Silva", avatar: "https://randomuser.me/api/portraits/women/33.jpg" }],
                 mensagens: [
                     { autor: 2, texto: "Oi pessoal, novidades do projeto?", hora: "19:01" },
@@ -24,7 +24,7 @@ const ChatApp = {
                 ]
             },
             {
-                id: 'g2', type: 'group', nome: "PrecisionCraft", avatar: "/img/cnc.png",
+                id: 'g2', type: 'group', nome: "PrecisionCraft", avatar: "./img/cnc.png", // <-- CORRIGIDO AQUI
                 membros: [{ id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },  { id: 2, nome: "Julia", avatar: "https://randomuser.me/api/portraits/women/48.jpg" }, 
                     { id: 8, nome: "Carlos", avatar: "https://randomuser.me/api/portraits/men/51.jpg" }, { id: 9, nome: "Laura", avatar: "https://randomuser.me/api/portraits/women/55.jpg" }
                 ],
@@ -44,7 +44,7 @@ const ChatApp = {
         filteredConversations: []
     },
     elements: {
-        chatContainer: document.querySelector('.chat-container'), // ✅ ADICIONADO
+        chatContainer: document.querySelector('.chat-container'),
         conversationsList: document.getElementById('conversations-list'),
         conversationSearch: document.getElementById('convo-search'),
         chatHeaderArea: document.getElementById('chat-header-area'),
@@ -88,7 +88,6 @@ const ChatApp = {
                 return;
             }
 
-            // ✅ LÓGICA MODIFICADA PARA ADICIONAR O BOTÃO DE VOLTAR
             const backButtonHTML = `<button class="back-to-list-btn"><i class="fas fa-arrow-left"></i></button>`;
             let convoInfoHTML = '';
             if (convo.type === 'group') {
@@ -98,7 +97,6 @@ const ChatApp = {
             }
             chatHeaderArea.innerHTML = backButtonHTML + convoInfoHTML;
             
-            // Adiciona o evento de clique ao novo botão
             const backBtn = chatHeaderArea.querySelector('.back-to-list-btn');
             if (backBtn) {
                 backBtn.addEventListener('click', ChatApp.handlers.goBackToList);
@@ -151,7 +149,7 @@ const ChatApp = {
     handlers: {
         selectConversation(convoId) {
             ChatApp.state.selectedConversationId = convoId;
-            const { chatInput, chatSendBtn, chatContainer } = ChatApp.elements; // Pega o container
+            const { chatInput, chatSendBtn, chatContainer } = ChatApp.elements;
             ChatApp.render.conversationsList();
             ChatApp.render.chatHeader();
             ChatApp.render.chatMessages();
@@ -159,18 +157,15 @@ const ChatApp = {
             if (chatSendBtn) chatSendBtn.disabled = false;
             if (chatInput) chatInput.focus();
 
-            // ✅ ADICIONADO: Ativa a classe para mostrar o chat no mobile
             if (chatContainer) {
                 chatContainer.classList.add('mobile-chat-active');
             }
         },
-        // ✅ ADICIONADO: Nova função para o botão de voltar
         goBackToList() {
             const { chatContainer } = ChatApp.elements;
             if (chatContainer) {
                 chatContainer.classList.remove('mobile-chat-active');
             }
-            // Opcional: Limpa a seleção para que a borda azul suma da lista
             ChatApp.state.selectedConversationId = null; 
             ChatApp.render.conversationsList();
         },
