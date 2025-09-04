@@ -2,6 +2,8 @@
 
 .container-perfil {
     display: grid;
+    /* A mudança principal é remover a regra da sidebar na versão mobile, 
+       deixando o principal.css controlar o menu. */
     grid-template-columns: 280px 1fr;
     gap: 1rem;
     padding: 1rem;
@@ -208,25 +210,18 @@
 
 
 /* --- RESPONSIVIDADE --- */
-
 @media (max-width: 992px) {
     .container-perfil {
         grid-template-columns: 1fr;
     }
-    .sidebar {
-        display: none; /* Esconde a sidebar da esquerda em telas menores */
-    }
+    /* A regra que escondia a sidebar foi removida daqui */
 }
 
 @media (max-width: 768px) {
-    /* CÓDIGO NOVO PARA CENTRALIZAR */
     .profile-info-main {
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-    
-    .profile-info-main {
         margin-top: -60px;
         padding: 0 1rem 1rem;
     }
