@@ -13,7 +13,7 @@ const ChatApp = {
         ],
         conversations: [
             {
-                id: 'g1', type: 'group', nome: "Projeto IoT", avatar: "./img/unnamed.png", // <-- CORRIGIDO AQUI
+                id: 'g1', type: 'group', nome: "Projeto IoT", avatar: "./img/unnamed.png", // <-- CORRIGIDO
                 membros: [{ id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" }, { id: 2, nome: "Miguel Piscki", avatar: "https://randomuser.me/api/portraits/men/22.jpg" }, { id: 3, nome: "Ana Silva", avatar: "https://randomuser.me/api/portraits/women/33.jpg" }],
                 mensagens: [
                     { autor: 2, texto: "Oi pessoal, novidades do projeto?", hora: "19:01" },
@@ -24,7 +24,7 @@ const ChatApp = {
                 ]
             },
             {
-                id: 'g2', type: 'group', nome: "PrecisionCraft", avatar: "./img/cnc.png", // <-- CORRIGIDO AQUI
+                id: 'g2', type: 'group', nome: "PrecisionCraft", avatar: "./img/cnc.png", // <-- CORRIGIDO
                 membros: [{ id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },  { id: 2, nome: "Julia", avatar: "https://randomuser.me/api/portraits/women/48.jpg" }, 
                     { id: 8, nome: "Carlos", avatar: "https://randomuser.me/api/portraits/men/51.jpg" }, { id: 9, nome: "Laura", avatar: "https://randomuser.me/api/portraits/women/55.jpg" }
                 ],
