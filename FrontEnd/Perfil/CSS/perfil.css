@@ -219,6 +219,13 @@
 }
 
 @media (max-width: 768px) {
+    /* CÓDIGO NOVO PARA CENTRALIZAR */
+    .profile-info-main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
     .profile-info-main {
         margin-top: -60px;
         padding: 0 1rem 1rem;

@@ -5,21 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- NOSSO BANCO DE DADOS DE USUÁRIOS ---
     const userDatabase = {
         'vinicius': {
-            name: "Vinicius Gallo",
-            title: "Desenvolvedor Full-Stack | Aluno de Análise e Desenvolvimento de Sistemas",
+            name: "Usuário Temporário",
+            title: "Sem Curso",
             location: "São Carlos, Brasil",
-            avatar: "./img/viniciusGallo.jpg",
+            avatar: "./img/perfil.png",
             cover: "https://images.unsplash.com/photo-1579403124614-197f69d8187b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-            stats: { connections: 153, projects: 12 },
-            about: "Entusiasta de tecnologia e estudante de Análise e Desenvolvimento de Sistemas no SENAI, com foco em criar soluções web robustas e escaláveis. Tenho experiência com JavaScript, React, Node.js e metodologias ágeis.",
-            skills: ["React", "Node.js", "JavaScript", "TypeScript", "HTML5 & CSS3", "SQL", "Git & GitHub", "Scrum"],
+            stats: { connections: 1, projects: 1 },
+            about: "Entusiasta de tecnologia",
+            skills: ["React", "JavaScript", "TypeScript", "HTML5 & CSS3", "Git & GitHub", "Scrum"],
             projects: [
-                { title: "Projeto IoT com Arduino", image: "./img/unnamed.png", description: "Monitoramento de ambiente industrial em tempo real." },
-                { title: "Torno CNC Modular", image: "./img/cnc.png", description: "Usinagem de alta precisão com design customizável." }
+                { title: "Senai Community", image: "./img/unnamed.png", description: "Toda ideia merece espaço para crescer. Aqui, ela encontra pessoas, projetos e oportunidades. Bem-vindo ao SenaiCommunity!" }
             ],
             connections: [
-                { id: "miguel", name: "Miguel Piscki", title: "Desenvolvedor Backend", avatar: "https://randomuser.me/api/portraits/men/22.jpg" },
-                { id: "ana", name: "Ana Silva", title: "Engenheira de Software", avatar: "https://randomuser.me/api/portraits/women/33.jpg" },
+                { id: "senai", name: "Senai São Carlos", title: "Faculdade de Tecnologia e Escola SENAI Antonio Adolpho Lobbe", avatar: "https://yt3.googleusercontent.com/wyGnsuVLCBoHStdhQ3Tj7Wr48yb_Oi2e1OmP2Rly99xB6wwe66T64bhCNDZkP5xxNHxF-lsE1A=s900-c-k-c0x00ffffff-no-rj" },
             ]
         },
         'miguel': {
