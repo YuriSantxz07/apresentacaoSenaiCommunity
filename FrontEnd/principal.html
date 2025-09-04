@@ -102,27 +102,47 @@
 
     <main class="main-content">
       <div class="post-creator">
-        <div class="avatar-small">
-          <img src="./img/perfil.png" alt="Perfil">
+    <div class="post-creator-simple">
+        <div class="post-creator-trigger">
+            <div class="post-icon">
+                <img src="./img/perfil.png" alt="Vinicius G.">
+            </div>
+            <input type="text" placeholder="Começar publicação" readonly>
         </div>
-        <input type="text" placeholder="Compartilhe seu projeto, Usuário Temporario...">
         <div class="post-options">
-          <button class="option-btn" data-type="photo"><i class="fas fa-image"></i></button>
-          <button class="option-btn" data-type="video"><i class="fas fa-video"></i></button>
-          <button class="option-btn" data-type="code"><i class="fas fa-code"></i></button>
+            <button class="option-btn" data-type="photo"><i class="fas fa-image"></i> Foto</button>
+            <button class="option-btn" data-type="video"><i class="fas fa-video"></i> Vídeo</button>
+            <button class="option-btn" data-type="code"><i class="fas fa-code"></i> Código</button>
         </div>
-      </div>
-
+    </div>
+<div class="post-creator-expanded">
+    <div class="post-editor-content">
+        <div class="editor-header">
+            <h3>Criar Publicação</h3>
+        </div>
+        <textarea class="editor-textarea" placeholder="No que você está pensando, Vinicius G.?"></textarea>
+        <div class="media-preview-container"></div>
+    </div>
+    <div class="post-editor-footer">
+        <div class="editor-options">
+            <button class="option-btn" data-type="photo" title="Adicionar foto"><i class="fas fa-image"></i></button>
+            <button class="option-btn" data-type="video" title="Adicionar vídeo"><i class="fas fa-video"></i></button>
+        </div>
+        <div class="editor-actions">
+            <button class="cancel-btn">Cancelar</button>
+            <button class="publish-btn" disabled>Publicar</button>
+        </div>
+    </div>
+</div>
+</div> <div class="feed-separator">
+    <hr/>
+</div>
       <div class="posts-container">
         </div>
     </main>
-    
     <aside class="right-sidebar">
-    
     <div class="widget-card" id="upcoming-events-widget">
-        </div>
-
-   
+    </div>
    
     <div class="widget-card" id="who-to-follow-widget">
         <div class="widget-header">

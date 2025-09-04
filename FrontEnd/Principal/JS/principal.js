@@ -143,34 +143,133 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ==================== CRIAÇÃO DE POSTS ====================
-    const postCreatorInput = document.querySelector('.post-creator input');
-    const postOptions = document.querySelectorAll('.post-options .option-btn');
+    // ==================== CRIAÇÃO DE POSTS (SOLUÇÃO DEFINITIVA) ====================
     const postsContainer = document.querySelector('.posts-container');
+    const postCreatorSimpleView = document.querySelector('.post-creator-simple');
+    const postCreatorExpandedView = document.querySelector('.post-creator-expanded');
 
-    if (postCreatorInput) {
-        postCreatorInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && postCreatorInput.value.trim()) {
-                createPost(postCreatorInput.value.trim());
-                postCreatorInput.value = '';
+    if (postCreatorSimpleView && postCreatorExpandedView) {
+        const simpleViewTrigger = postCreatorSimpleView.querySelector('.post-creator-trigger');
+        const simpleViewOptions = postCreatorSimpleView.querySelectorAll('.post-options .option-btn');
+        const cancelBtn = postCreatorExpandedView.querySelector('.cancel-btn');
+        const publishBtn = postCreatorExpandedView.querySelector('.publish-btn');
+        const textarea = postCreatorExpandedView.querySelector('.editor-textarea');
+        const mediaPreviewContainer = postCreatorExpandedView.querySelector('.media-preview-container');
+        const expandedViewOptions = postCreatorExpandedView.querySelectorAll('.editor-options .option-btn');
+        
+        const mediaFileInput = document.createElement('input');
+        mediaFileInput.type = 'file';
+        mediaFileInput.accept = 'image/*,video/*';
+        mediaFileInput.style.display = 'none';
+        document.body.appendChild(mediaFileInput);
+
+        let currentMediaFile = null;
+        let currentMediaURL = null;
+
+        const openEditor = () => {
+            postCreatorSimpleView.style.display = 'none';
+            postCreatorExpandedView.style.display = 'block';
+            textarea.focus();
+        };
+
+        const closeEditor = () => {
+            postCreatorSimpleView.style.display = 'flex'; // Alterado para flex para alinhar corretamente
+            postCreatorExpandedView.style.display = 'none';
+            
+            textarea.value = '';
+            mediaPreviewContainer.innerHTML = '';
+            publishBtn.disabled = true;
+            if (currentMediaURL) {
+                URL.revokeObjectURL(currentMediaURL);
+            }
+            currentMediaFile = null;
+            currentMediaURL = null;
+            mediaFileInput.value = '';
+        };
+        
+        const checkPublishButtonState = () => {
+            publishBtn.disabled = !textarea.value.trim() && !currentMediaFile;
+        };
+        
+        simpleViewTrigger.addEventListener('click', openEditor);
+        simpleViewOptions.forEach(btn => {
+            btn.addEventListener('click', () => {
+                openEditor();
+                if (btn.dataset.type === 'photo' || btn.dataset.type === 'video') {
+                    mediaFileInput.click();
+                }
+            });
+        });
+        
+        expandedViewOptions.forEach(btn => {
+            btn.addEventListener('click', () => mediaFileInput.click());
+        });
+
+        cancelBtn.addEventListener('click', closeEditor);
+        textarea.addEventListener('input', checkPublishButtonState);
+
+        mediaFileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (currentMediaURL) URL.revokeObjectURL(currentMediaURL);
+            
+            currentMediaFile = file;
+            currentMediaURL = URL.createObjectURL(file);
+            mediaPreviewContainer.innerHTML = '';
+
+            let previewElement;
+            if (file.type.startsWith('image/')) {
+                previewElement = document.createElement('img');
+            } else if (file.type.startsWith('video/')) {
+                previewElement = document.createElement('video');
+                previewElement.controls = true;
+            }
+
+            if (previewElement) {
+                previewElement.src = currentMediaURL;
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-media-btn';
+                removeBtn.innerHTML = '&times;';
+                removeBtn.onclick = () => {
+                    mediaPreviewContainer.innerHTML = '';
+                    URL.revokeObjectURL(currentMediaURL);
+                    currentMediaFile = null;
+                    currentMediaURL = null;
+                    mediaFileInput.value = '';
+                    checkPublishButtonState();
+                };
+                mediaPreviewContainer.appendChild(previewElement);
+                mediaPreviewContainer.appendChild(removeBtn);
+            }
+            checkPublishButtonState();
+        });
+
+        publishBtn.addEventListener('click', () => {
+            const content = textarea.value.trim();
+            if (content || currentMediaFile) {
+                createPost(content, currentMediaURL, currentMediaFile ? currentMediaFile.type : null);
+                currentMediaURL = null; 
+                closeEditor();
             }
         });
     }
-    
-    if (postOptions) {
-        postOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const type = option.dataset.type;
-                showNotification(`Adicionar ${type === 'photo' ? 'imagem' : type === 'video' ? 'vídeo' : 'código'}`);
-            });
-        });
-    }
 
-    function createPost(content) {
+    function createPost(content, mediaUrl = null, mediaType = null) {
         const postElement = document.createElement('div');
         postElement.className = 'post';
         postElement.dataset.id = Date.now();
-        postElement.dataset.authorName = currentUser.name; 
+        postElement.dataset.authorName = currentUser.name;
+
+        let mediaHTML = '';
+        if (mediaUrl && mediaType) {
+            if (mediaType.startsWith('image/')) {
+                mediaHTML = `<div class="post-images"><img src="${mediaUrl}" alt="Conteúdo da postagem"></div>`;
+            } else if (mediaType.startsWith('video/')) {
+                mediaHTML = `<div class="post-video"><video src="${mediaUrl}" controls></video></div>`;
+            }
+        }
+
         postElement.innerHTML = `
             <div class="post-header">
                 <div class="post-author">
@@ -182,7 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="post-options-btn"><i class="fas fa-ellipsis-h"></i></div>
             </div>
-            <div class="post-text">${content}</div>
+            ${content ? `<div class="post-text">${content}</div>` : ''}
+            ${mediaHTML}
             <div class="post-actions">
                 <button class="like-btn"><i class="far fa-thumbs-up"></i> <span>Curtir</span> <span class="count">0</span></button>
                 <button class="comment-btn"><i class="far fa-comment"></i> <span>Comentar</span> <span class="count">0</span></button>
@@ -193,11 +293,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="avatar-small"><img src="${currentUser.avatar}" alt="${currentUser.name}"></div>
                 <input type="text" placeholder="Adicione um comentário...">
             </div>`;
+        
+        // CORREÇÃO: Chamada para addPostEvents estava faltando ou com problemas.
+        // Garantindo que ela seja chamada aqui para todo novo post.
         addPostEvents(postElement);
         postsContainer.prepend(postElement);
     }
 
-    // ==================== INTERAÇÕES COM POSTS ====================
+    // ==================== INTERAÇÕES COM POSTS (FUNÇÃO CORRIGIDA) ====================
     function addPostEvents(postElement) {
         const optionsBtn = postElement.querySelector('.post-options-btn');
         optionsBtn.addEventListener('click', (e) => {
@@ -355,13 +458,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadInitialPosts() {
         if (!postsContainer) return;
         const mockPosts = [
-            // ✅ POST DO SENAI SÃO CARLOS NO TOPO
             { 
                 id: 6, 
-                author: { 
-                    name: "Senai São Carlos", 
-                    avatar: "./img/perfil.png"
-                }, 
+                author: { name: "Senai São Carlos", avatar: "./img/perfil.png" }, 
                 content: "Bem-vindos à comunidade oficial do Senai São Carlos! Um espaço para conectar alunos, professores e empresas, compartilhar projetos e impulsionar carreiras. #SenaiSaoCarlos #Inovacao #Tecnologia", 
                 images: [], 
                 time: "1h", 
@@ -376,42 +475,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 time: "Ontem", 
                 likes: 24, 
                 comments: [{ author: "Ana Silva", avatar: "https://randomuser.me/api/portraits/women/33.jpg", content: "Incrível, Miguel! Poderia compartilhar o código fonte?", time: "2h atrás" }] 
-            },
-            { 
-                id: 2, 
-                author: { name: "Eliezer Biancolini", avatar: "https://randomuser.me/api/portraits/men/45.jpg" }, 
-                content: "Alguém interessado em formar um grupo de estudos para a maratona de programação? Estou pensando em reunir 3-5 pessoas para treinar 2x por semana.", 
-                images: [], 
-                time: "11h", 
-                likes: 11, 
-                comments: [] 
-            },
-            { 
-                id: 3, 
-                author: { name: "Gustavo Beltrame", avatar: "https://t4.ftcdn.net/jpg/02/24/86/95/360_F_224869519_aRaeLneqALfPNBzg0xxMZXghtvBXkfIA.jpg" }, 
-                content: "Desenvolvimento de um sistema que monitora o estoque em tempo real...", 
-                images: ["./img/tiProjeto.png"], 
-                time: "12d", 
-                likes: 13, 
-                comments: [] 
-            },
-            { 
-                id: 4, 
-                author: { name: "Ruth Azevedo", avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5tbMgjWv9P8gwFgrcjVgH7m8wqcTFOMpnXw&s" }, 
-                content: "Preciso projetar um mecanismo de acionamento para um pequeno robô explorador terrestre...", 
-                images: ["./img/robo.png"], 
-                time: "20d", 
-                likes: 30, 
-                comments: [{ author: "Naiara Piscke", avatar: "https://img.freepik.com/fotos-gratis/retrato-de-mulher-feliz-com-tablet-digital_329181-11681.jpg?semt=ais_hybrid&w=740", content: "Este projeto tem um potencial incrível!" , time: "2h atrás" }] 
-            },
-            { 
-                id: 5, 
-                author: { name: "Lais Vitoria", avatar: "https://diariodocomercio.com.br/wp-content/uploads/2022/08/mulher-na-politica-eleicoes.jpg" }, 
-                content: "Estou buscando colaboradores com experiência em mecatrônica e eletroeletrônica para um projeto inovador.", 
-                images: [], 
-                time: "21d", 
-                likes: 22, 
-                comments: [] 
             },
         ];
         postsContainer.innerHTML = '';

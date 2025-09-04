@@ -18,7 +18,9 @@
   --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   --card-radius: 8px;
   --transition: all 0.3s ease;
-  --incoming-msg-bg: #21262d; /* ADICIONADO  */
+  --incoming-msg-bg: #21262d;
+  --button-disabled: #30363d;
+  --background-hover: rgba(139, 148, 158, 0.1);
 }
 
 [data-theme="light"] {
@@ -38,7 +40,9 @@
   --success: #31a24c;
   --border-color: #dddfe2;
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --incoming-msg-bg: #e4e6eb; /* ADICIONADO  */
+  --incoming-msg-bg: #e4e6eb;
+  --button-disabled: #e4e6eb;
+  --background-hover: rgba(29, 33, 41, 0.08);
 }
 
 * {
@@ -115,16 +119,23 @@ body {
   width: 100%;
   padding: 0.75rem 1rem 0.75rem 2.5rem;
   background-color: var(--bg-tertiary);
-  border: none;
-  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
   color: var(--text-primary);
   font-size: 0.875rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.search input::placeholder {
+    color: var(--text-tertiary);
+    opacity: 1;
 }
 
 .search input:focus {
   outline: none;
   background-color: var(--bg-secondary);
-  box-shadow: 0 0 0 2px var(--accent-primary);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.25);
 }
 
 .search-results {
@@ -140,6 +151,28 @@ body {
   z-index: 100;
   box-shadow: var(--shadow);
 }
+
+.search-result {
+  display: flex;
+  align-items: center;
+  padding: 0.35rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: background-color 0.2s ease;
+}
+
+.search-result:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.search-result svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.75rem;
+  color: var(--text-secondary);
+}
+
 
 .nav-icons {
   display: flex;
@@ -300,11 +333,6 @@ body {
   object-fit: cover;
 }
 
-
-
-
-
-
 .user-info h2 {
   font-size: 1.25rem;
   margin-bottom: 0.25rem;
@@ -416,8 +444,6 @@ body {
 
 .friend-avatar img { width: 100%; height: 100%; object-fit: cover; }
 
-
-
 .friend span {
   font-size: 0.75rem;
   text-align: center;
@@ -435,52 +461,177 @@ body {
   min-width: 0;
 }
 
+/* ==========================================================
+   BLOCO DE CRIAÇÃO DE POSTAGEM - TOTALMENTE CORRIGIDO
+   ========================================================== */
+
 .post-creator {
   background-color: var(--bg-secondary);
   border-radius: var(--card-radius);
   padding: 1rem;
-  display: flex;
-  gap: 1rem;
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow);
 }
 
-.avatar-small {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
+.post-creator-simple {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.avatar-small img { width: 100%; height: 100%; object-fit: cover; }
+.post-creator-trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: text;
+}
 
-.post-creator input {
-  flex: 1;
+.post-creator-trigger input {
+  flex-grow: 1;
   background-color: var(--bg-tertiary);
-  border: none;
+  border: 1px solid var(--border-color);
   border-radius: 20px;
   padding: 0.75rem 1rem;
   color: var(--text-primary);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.post-creator input:focus { outline: none; background-color: var(--bg-secondary); }
+.post-creator-trigger input:hover {
+  background-color: var(--bg-quaternary);
+}
 
-.post-options { display: flex; align-items: center; gap: 0.5rem; }
+.post-options {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 52px; /* Alinha com o input, considerando o avatar e o gap */
+}
 
-.option-btn {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: transparent;
+.post-options .option-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
   border: none;
   color: var(--text-secondary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
   cursor: pointer;
-  transition: var(--transition);
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
-.option-btn:hover { background-color: var(--bg-quaternary); color: var(--accent-primary); }
+.post-options .option-btn:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.post-creator-expanded {
+  display: none;
+}
+
+.editor-header {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.editor-textarea {
+  width: 100%;
+  min-height: 120px;
+  background-color: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  padding: 0;
+}
+
+.editor-textarea:focus {
+  outline: none;
+}
+
+.media-preview-container {
+  position: relative;
+  margin-top: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+
+.media-preview-container img,
+.media-preview-container video {
+  max-width: 100%;
+  max-height: 400px;
+  display: block;
+}
+
+.remove-media-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.remove-media-btn:hover {
+  opacity: 1;
+}
+
+.post-editor-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.editor-actions .cancel-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  border-radius: 20px;
+  margin-right: 0.5rem;
+}
+
+.editor-actions .cancel-btn:hover {
+  background-color: var(--background-hover);
+}
+
+.editor-actions .publish-btn {
+  background-color: var(--accent-primary);
+  color: white;
+  border: none;
+  padding: 0.65rem 1.5rem;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.editor-actions .publish-btn:disabled {
+  background-color: var(--button-disabled);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   FIM DO BLOCO DE CRIAÇÃO DE POSTAGEM
+   ========================================================== */
 
 .posts-container { display: flex; flex-direction: column; gap: 1rem; }
 
@@ -503,6 +654,14 @@ body {
 
 .post-icon { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; }
 .post-icon img { width: 100%; height: 100%; object-fit: cover; }
+.avatar-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.avatar-small img { width: 100%; height: 100%; object-fit: cover; }
 
 .post-info h2 { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem; }
 .post-info span { font-size: 0.75rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.25rem; }
@@ -522,6 +681,8 @@ body {
 .post-text { margin-bottom: 1rem; font-size: 0.9375rem; }
 .post-images { margin-bottom: 1rem; border-radius: var(--card-radius); overflow: hidden; }
 .post-images img { width: 100%; max-height: 400px; object-fit: cover; display: block; }
+.post-video video { width: 100%; max-height: 400px; display: block; border-radius: var(--card-radius); }
+
 
 .post-actions {
   display: flex;
@@ -762,74 +923,58 @@ body {
   }
 }
 
-/* Cole ou substitua este bloco em: FrontEnd/Principal/CSS/principal.css */
+/* ADICIONE ESTE CÓDIGO AO FINAL DO SEU ARQUIVO CSS */
 
-.search {
-  position: relative;
-  flex: 0.5;
-  min-width: 200px;
+.post-editor-footer {
+    display: flex;
+    justify-content: space-between; /* ALTERADO para alinhar itens nas extremidades */
+    align-items: center;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.75rem;
 }
 
-.search i {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-secondary);
-  z-index: 2; /* Garante que o ícone fique visível */
+.editor-options {
+    display: flex;
+    gap: 0.5rem;
 }
 
-/* --- ESTILO ATUALIZADO DA BARRA DE PESQUISA --- */
-.search input {
-  width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
-  background-color: var(--bg-tertiary);
-  border: 1px solid var(--border-color); /* ADICIONADO: Borda sutil */
-  border-radius: 8px; /* ALTERADO: Arredondamento mais moderno */
-  color: var(--text-primary);
-  font-size: 0.875rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; /* ADICIONADO: Transições suaves */
+.editor-options .option-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
 }
 
-.search input::placeholder {
-    color: var(--text-tertiary);
-    opacity: 1;
+.editor-options .option-btn:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--accent-primary);
 }
 
-/* --- EFEITO DE FOCO ATUALIZADO --- */
-.search input:focus {
-  outline: none;
-  background-color: var(--bg-secondary);
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.25); /* Sombra mais suave */
+/* ADICIONE ESTE CÓDIGO AO FINAL DO SEU ARQUIVO CSS */
+
+/* 1. Adiciona um espaço extra abaixo da caixa de criação de post */
+.post-creator {
+  margin-bottom: 1.5rem; 
 }
 
-/* Cole este bloco em: FrontEnd/Principal/CSS/principal.css */
-
-.search-result {
+/* 2. Estiliza o novo divisor */
+.feed-separator {
+  margin-bottom: 1.5rem; /* Espaço depois do divisor */
   display: flex;
   align-items: center;
-  padding: 0.35rem;
-  border-radius: 6px;
-  cursor: pointer;
-  color: var(--text-primary);
-  transition: background-color 0.2s ease; /* Transição suave para a mudança de cor */
+  gap: 1rem;
 }
 
-/* ==========================================================================
-   CORREÇÃO DEFINITIVA PARA ÍCONES DA BARRA DE PESQUISA
-   ========================================================================== */
-
-
-/* Esta é a regra que muda a cor ao passar o mouse */
-.search-result:hover {
-  background-color: var(--bg-tertiary); /* Cor de fundo mais clara no hover */
+.feed-separator hr {
+  flex-grow: 1; /* Faz a linha ocupar todo o espaço disponível */
+  border: none;
+  border-top: 1px solid var(--border-color);
 }
 
-/* Novo estilo para os ícones SVG na barra de pesquisa */
-.search-result svg {
-  width: 16px;
-  height: 16px;
-  margin-right: 0.75rem;
-  color: var(--text-secondary);
-}
+/* FIM DO CÓDIGO CSS */
