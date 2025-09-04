@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- NOSSO BANCO DE DADOS DE USUÁRIOS ---
     const userDatabase = {
-        'vinicius': {
+        'usuario': {
             name: "Usuário Temporário",
             title: "Sem Curso",
             location: "São Carlos, Brasil",
@@ -64,13 +64,32 @@ document.addEventListener('DOMContentLoaded', () => {
             skills: ["Tecnologia", "Inovação", "Indústria 4.0", "Educação", "Mecatrônica", "Desenvolvimento de Sistemas"],
             projects: [],
             connections: []
+        },
+        'vinicius': {
+            name: "Vinicius Gallo",
+            title: "Desenvolvimento de Sistemas",
+            location: "São Carlos, Brasil",
+            avatar: "./img/viniciusGallo.jpg",
+            cover: "https://images.unsplash.com/photo-1579403124614-197f69d8187b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+            stats: { connections: 200, projects: 4 },
+            about: "um entusiasta de tecnologia e estudante do SENAI, com foco em criar soluções web robustas e escaláveis. Tem experiência com JavaScript, React, Node.js e metodologias ágeis.",
+            skills: ["React", "JavaScript", "TypeScript", "HTML5 & CSS3", "Git & GitHub", "Scrum"],
+            projects: [
+                { title: "Senai Community", image: "./img/unnamed.png", description: "Toda ideia merece espaço para crescer. Aqui, ela encontra pessoas, projetos e oportunidades. Bem-vindo ao SenaiCommunity!" },
+                { title: "Dashboard de Vendas", image: "./img/tiProjeto.png", description: "Análise de dados de vendas em tempo real." }
+            ],
+            connections: [
+                { id: "senai", name: "Senai São Carlos", title: "Faculdade de Tecnologia e Escola SENAI Antonio Adolpho Lobbe", avatar: "https://yt3.googleusercontent.com/wyGnsuVLCBoHStdhQ3Tj7Wr48yb_Oi2e1OmP2Rly99xB6wwe66T64bhCNDZkP5xxNHxF-lsE1A=s900-c-k-c0x00ffffff-no-rj" },
+                { id: "ana", name: "Ana Silva", title: "Engenheira de Software", avatar: "https://randomuser.me/api/portraits/women/33.jpg" },
+
+            ]
         }
     };
 
     // --- LÓGICA PARA CARREGAR O PERFIL ---
     function loadProfile() {
         const params = new URLSearchParams(window.location.search);
-        const userId = params.get('id') || 'vinicius';
+        const userId = params.get('id') || 'usuario';
         
         const user = userDatabase[userId];
         if (!user) {

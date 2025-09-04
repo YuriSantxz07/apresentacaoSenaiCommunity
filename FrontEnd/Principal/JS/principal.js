@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==================== VARIÁVEIS GLOBAIS ====================
     const currentUser = {
         id: 1,
-        name: "Usuário Temporario",
+        name: "Usuário Temporário",
         username: "Usuário Temporario",
         avatar: "./img/perfil.png",
         title: "Estudante de ADS",
