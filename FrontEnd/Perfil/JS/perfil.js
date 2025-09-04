@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </a>`).join('') || '<p>Nenhuma conexão para exibir.</p>';
 
         const actionsContainer = document.getElementById('profile-actions-container');
-        if (userId === 'vinicius') {
+        if (userId === 'usuario') {
              actionsContainer.innerHTML = `<button class="btn-perfil primary"><i class="fas fa-edit"></i> Editar Perfil</button>`;
         } else {
              actionsContainer.innerHTML = `<button class="btn-perfil primary"><i class="fas fa-user-plus"></i> Conectar</button><button class="btn-perfil secondary"><i class="fas fa-comment-dots"></i> Mensagem</button>`;
