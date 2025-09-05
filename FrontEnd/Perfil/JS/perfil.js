@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Faculdade de Tecnologia e Escola SENAI Antonio Adolpho Lobbe",
             location: "São Carlos, Brasil",
             avatar: "./img/senai.jpg",
-            cover: "./img/senai-cover.jpg", 
+            cover: "https://www.senairs.org.br/sites/default/files/senai.png", 
             stats: { connections: 1250, projects: 200 },
             about: "O SENAI São Carlos é um centro de excelência em educação profissional e tecnológica, formando talentos para a indústria 4.0. Oferecemos cursos técnicos, de graduação e pós-graduação.",
             skills: ["Tecnologia", "Inovação", "Indústria 4.0", "Educação", "Mecatrônica", "Desenvolvimento de Sistemas"],
