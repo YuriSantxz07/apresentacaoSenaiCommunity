@@ -176,8 +176,19 @@
  text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
 }
 .group-last-msg {
- font-size: 0.9rem; color: var(--text-secondary);
- margin-top: 2px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; max-width: 220px;
+ font-size: 0.9rem; 
+ color: var(--text-secondary);
+ margin-top: 2px; 
+
+ /* Propriedades que permitem a quebra de linha */
+ white-space: normal;
+ overflow-wrap: break-word;
+ word-break: break-word;
+
+ /* Removemos as propriedades que cortavam o texto */
+ /* text-overflow: ellipsis; */
+ /* overflow: hidden; */
+ /* max-width: 220px; */
 }
 .group-last-msg strong { color: var(--text-primary); }
 
@@ -532,4 +543,11 @@
     align-items: center;
     flex-grow: 1;
     min-width: 0;
+}
+/* Adicione este bloco para corrigir a aparência do primeiro balão de mensagem */
+.message-group .message-block .message-content:only-child {
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
 }
