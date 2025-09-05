@@ -237,6 +237,9 @@
     .profile-details {
         text-align: center;
     }
+    .profile-location {
+        justify-content: center; /* Adicionado para centralizar a localização */
+    }
     .profile-stats {
         justify-content: center;
     }

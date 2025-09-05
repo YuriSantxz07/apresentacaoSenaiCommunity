@@ -15,10 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             notification.classList.add('show');
         }, 10);
+        // O tempo de exibição foi alterado de 5000 para 3000 (3 segundos)
         setTimeout(() => {
             notification.classList.remove('show');
             notification.addEventListener('transitionend', () => notification.remove());
-        }, 5000);
+        }, 3000);
     }
 
     // ==================== VARIÁVEIS GLOBAIS ====================
@@ -262,6 +263,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="add-comment"><div class="avatar-small"><img src="${currentUser.avatar}" alt="${currentUser.name}"></div><input type="text" placeholder="Adicione um comentário..."></div>`;
             postsContainer.appendChild(postElement);
             addPostEvents(postElement);
+        });
+    }
+
+    // ==================== BOTÕES DE POST COM FUNCIONALIDADE EM DESENVOLVIMENTO ====================
+    const mediaButtons = document.querySelectorAll('.post-options .option-btn, .editor-options .option-btn');
+    mediaButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            showNotification('Funcionalidade em desenvolvimento.', 'info');
+        });
+    });
+
+    // ==================== AVISO NO BOTÃO DE CONFIGURAÇÕES ====================
+    const settingsButton = document.querySelector('.dropdown-menu a[href="#"]');
+    if (settingsButton) {
+        settingsButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Impede que o link navegue
+            showNotification('Funcionalidade em desenvolvimento.', 'info');
+        });
+    }
+
+    // ==================== AVISO NO ÍCONE DE NOTIFICAÇÕES ====================
+    const notificationIcon = document.querySelector('#notification-icon');
+    if (notificationIcon) {
+        notificationIcon.addEventListener('click', () => {
+            showNotification('Funcionalidade em desenvolvimento.', 'info');
         });
     }
 
