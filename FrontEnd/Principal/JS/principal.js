@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentUser = {
         id: 1,
         name: "Usuário Temporário",
-        username: "Usuário Temporario",
+        username: "Usuário Temporário",
         avatar: "./img/perfil.png",
         title: "Estudante de ADS",
         connections: 11,

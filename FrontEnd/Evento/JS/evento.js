@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: 4,
       titulo: "Palestra: O Futuro da Computação Quântica",
-      imagem: "https://images.unsplash.com/photo-1635070045091-d3a3f5a0e9aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+      imagem: "https://tm.ibxk.com.br/2025/06/03/03211506714004.jpg?ims=1200x900",
       data: new Date(2025, 4, 1), // Maio
       hora: "20:00",
       local: "YouTube Live",

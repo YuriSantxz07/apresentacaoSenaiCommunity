@@ -10,14 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "São Carlos, Brasil",
             avatar: "./img/perfil.png",
             cover: "https://images.unsplash.com/photo-1579403124614-197f69d8187b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-            stats: { connections: 1, projects: 1 },
+            stats: { connections: 3, projects: 1 }, // Conexões atualizadas para 3
             about: "Entusiasta de tecnologia",
             skills: ["React", "JavaScript", "TypeScript", "HTML5 & CSS3", "Git & GitHub", "Scrum"],
             projects: [
                 { title: "Senai Community", image: "./img/unnamed.png", description: "Toda ideia merece espaço para crescer. Aqui, ela encontra pessoas, projetos e oportunidades. Bem-vindo ao SenaiCommunity!" }
             ],
             connections: [
-                { id: "senai", name: "Senai São Carlos", title: "Faculdade de Tecnologia e Escola SENAI Antonio Adolpho Lobbe", avatar: "https://yt3.googleusercontent.com/wyGnsuVLCBoHStdhQ3Tj7Wr48yb_Oi2e1OmP2Rly99xB6wwe66T64bhCNDZkP5xxNHxF-lsE1A=s900-c-k-c0x00ffffff-no-rj" },
+                { id: "senai", name: "Senai São Carlos", title: "Faculdade de Tecnologia e Escola SENAI Antonio Adolpho Lobbe", avatar: "img/senai.jpg" },
+                { id: "miguel", name: "Miguel Piscki", title: "Especialista em IoT e Automação", avatar: "https://randomuser.me/api/portraits/men/22.jpg" },
+                { id: "vinicius", name: "Vinicius Gallo", title: "Desenvolvimento de Sistemas", avatar: "./img/viniciusGallo.jpg" }
             ]
         },
         'miguel': {
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Araraquara, Brasil",
             avatar: "https://randomuser.me/api/portraits/men/22.jpg",
             cover: "https://images.unsplash.com/photo-1518770660439-4636190af475?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-            stats: { connections: 87, projects: 5 },
+            stats: { connections: 88, projects: 5 },
             about: "Apaixonado por hardware e software. Conectando o mundo físico ao digital através de soluções inovadoras com Arduino e outras plataformas.",
             skills: ["Arduino", "C++", "Python", "Node.js", "Sensores IoT", "Automação Industrial"],
             projects: [
@@ -35,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             connections: [
                  { id: "vinicius", name: "Vinicius Gallo", title: "Desenvolvedor Full-Stack", avatar: "./img/viniciusGallo.jpg" },
                  { id: "ana", name: "Ana Silva", title: "Engenheira de Software", avatar: "https://randomuser.me/api/portraits/women/33.jpg" },
+                 { id: "usuario", name: "Usuário Temporário", title: "Sem Curso", avatar: "./img/perfil.png" }
             ]
         },
         'ana': {
@@ -58,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Faculdade de Tecnologia e Escola SENAI Antonio Adolpho Lobbe",
             location: "São Carlos, Brasil",
             avatar: "./img/senai.jpg",
-            cover: "https://jornalpp.com.br/wp-content/uploads/2023/08/senai-sao-carlos-aerea-divulgacao-scaled.jpg",
+            cover: "./img/senai-cover.jpg", 
             stats: { connections: 1250, projects: 200 },
             about: "O SENAI São Carlos é um centro de excelência em educação profissional e tecnológica, formando talentos para a indústria 4.0. Oferecemos cursos técnicos, de graduação e pós-graduação.",
             skills: ["Tecnologia", "Inovação", "Indústria 4.0", "Educação", "Mecatrônica", "Desenvolvimento de Sistemas"],
@@ -71,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "São Carlos, Brasil",
             avatar: "./img/viniciusGallo.jpg",
             cover: "https://images.unsplash.com/photo-1579403124614-197f69d8187b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
-            stats: { connections: 200, projects: 4 },
+            stats: { connections: 201, projects: 4 },
             about: "um entusiasta de tecnologia e estudante do SENAI, com foco em criar soluções web robustas e escaláveis. Tem experiência com JavaScript, React, Node.js e metodologias ágeis.",
             skills: ["React", "JavaScript", "TypeScript", "HTML5 & CSS3", "Git & GitHub", "Scrum"],
             projects: [
@@ -79,9 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { title: "Dashboard de Vendas", image: "./img/tiProjeto.png", description: "Análise de dados de vendas em tempo real." }
             ],
             connections: [
-                { id: "senai", name: "Senai São Carlos", title: "Faculdade de Tecnologia e Escola SENAI Antonio Adolpho Lobbe", avatar: "https://yt3.googleusercontent.com/wyGnsuVLCBoHStdhQ3Tj7Wr48yb_Oi2e1OmP2Rly99xB6wwe66T64bhCNDZkP5xxNHxF-lsE1A=s900-c-k-c0x00ffffff-no-rj" },
+                { id: "senai", name: "Senai São Carlos", title: "Faculdade de Tecnologia e Escola SENAI Antonio Adolpho Lobbe", avatar: "img/senai.jpg" },
                 { id: "ana", name: "Ana Silva", title: "Engenheira de Software", avatar: "https://randomuser.me/api/portraits/women/33.jpg" },
-
+                { id: "usuario", name: "Usuário Temporário", title: "Sem Curso", avatar: "./img/perfil.png" }
             ]
         }
     };

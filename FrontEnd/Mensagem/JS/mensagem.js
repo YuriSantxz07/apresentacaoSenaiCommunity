@@ -13,18 +13,18 @@ const ChatApp = {
         ],
         conversations: [
             {
-                id: 'g1', type: 'group', nome: "Projeto IoT", avatar: "./img/unnamed.png", // <-- CORRIGIDO
+                id: 'g1', type: 'group', nome: "Projeto IoT", avatar: "./img/unnamed.png",
                 membros: [{ id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" }, { id: 2, nome: "Miguel Piscki", avatar: "https://randomuser.me/api/portraits/men/22.jpg" }, { id: 3, nome: "Ana Silva", avatar: "https://randomuser.me/api/portraits/women/33.jpg" }],
                 mensagens: [
                     { autor: 2, texto: "Oi pessoal, novidades do projeto?", hora: "19:01" },
                     { autor: 1, texto: "Ainda não, mas terminei o layout!", hora: "19:02" },
                     { autor: 1, texto: "Vejam o que acham e me deem um feedback depois.", hora: "19:02" },
-                    { autor: 3, texto: "Ficou ótimo, Vini! Parabéns!", hora: "19:05" },
+                    { autor: 3, texto: "Ficou ótimo, Parabéns!", hora: "19:05" },
                     { autor: 3, texto: "Posso revisar o código depois.", hora: "19:05" }
                 ]
             },
             {
-                id: 'g2', type: 'group', nome: "PrecisionCraft", avatar: "./img/cnc.png", // <-- CORRIGIDO
+                id: 'g2', type: 'group', nome: "PrecisionCraft", avatar: "./img/cnc.png",
                 membros: [{ id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },  { id: 2, nome: "Julia", avatar: "https://randomuser.me/api/portraits/women/48.jpg" }, 
                     { id: 8, nome: "Carlos", avatar: "https://randomuser.me/api/portraits/men/51.jpg" }, { id: 9, nome: "Laura", avatar: "https://randomuser.me/api/portraits/women/55.jpg" }
                 ],
@@ -35,7 +35,7 @@ const ChatApp = {
                 otherUser: { id: 4, nome: "Eliezer B.", avatar: "https://randomuser.me/api/portraits/men/45.jpg", online: true },
                 membros: [{ id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" }, { id: 4, nome: "Eliezer B.", avatar: "https://randomuser.me/api/portraits/men/45.jpg" }],
                 mensagens: [
-                    { autor: 4, texto: "E aí, Vinicius! Tudo certo?", hora: "14:50"},
+                    { autor: 4, texto: "E aí,Tudo certo?", hora: "14:50"},
                     { autor: 1, texto: "Opa, tudo joia e você?", hora: "14:51"}
                 ]
             }
@@ -48,6 +48,7 @@ const ChatApp = {
         conversationsList: document.getElementById('conversations-list'),
         conversationSearch: document.getElementById('convo-search'),
         chatHeaderArea: document.getElementById('chat-header-area'),
+        chatHeaderDynamicContent: document.getElementById('chat-header-dynamic-content'),
         chatMessagesArea: document.getElementById('chat-messages-area'),
         chatForm: document.getElementById('chat-form'),
         chatInput: document.getElementById('chat-input'),
@@ -81,13 +82,11 @@ const ChatApp = {
             });
         },
         chatHeader() {
-            const { chatHeaderArea } = ChatApp.elements;
+            const { chatHeaderDynamicContent } = ChatApp.elements;
             const convo = ChatApp.utils.getSelectedConversation();
-            if (!chatHeaderArea || !convo) {
-                if (chatHeaderArea) chatHeaderArea.innerHTML = '';
-                return;
-            }
-
+            if (!chatHeaderDynamicContent) return;
+            chatHeaderDynamicContent.innerHTML = '';
+            if (!convo) return;
             const backButtonHTML = `<button class="back-to-list-btn"><i class="fas fa-arrow-left"></i></button>`;
             let convoInfoHTML = '';
             if (convo.type === 'group') {
@@ -95,9 +94,8 @@ const ChatApp = {
             } else {
                 convoInfoHTML = `<div class="chat-group-info"><img src="${convo.otherUser.avatar}" class="chat-group-avatar" alt="Usuário"><div><h3 class="chat-group-title">${convo.otherUser.nome}</h3>${convo.otherUser.online ? `<div class="chat-user-status">Online</div>` : ''}</div></div>`;
             }
-            chatHeaderArea.innerHTML = backButtonHTML + convoInfoHTML;
-            
-            const backBtn = chatHeaderArea.querySelector('.back-to-list-btn');
+            chatHeaderDynamicContent.innerHTML = backButtonHTML + convoInfoHTML;
+            const backBtn = chatHeaderDynamicContent.querySelector('.back-to-list-btn');
             if (backBtn) {
                 backBtn.addEventListener('click', ChatApp.handlers.goBackToList);
             }
@@ -112,6 +110,9 @@ const ChatApp = {
             chatMessagesArea.innerHTML = '';
             let lastAuthorId = null;
             let currentMessageBlock = null;
+
+            // **INÍCIO DA LÓGICA CORRIGIDA**
+            // O loop `forEach` garante que CADA objeto de mensagem no array se torne UM balão.
             convo.mensagens.forEach(msg => {
                 const user = ChatApp.utils.getUser(convo, msg.autor);
                 const sideClass = msg.autor === ChatApp.state.currentUser.id ? 'me' : 'outro';
@@ -137,12 +138,15 @@ const ChatApp = {
                 }
                 const messageContent = document.createElement('div');
                 messageContent.className = 'message-content';
+                // A linha abaixo pega o texto da mensagem (msg.texto) e o insere no balão.
+                // Ela NÃO divide o texto por espaços.
                 messageContent.innerHTML = msg.texto.replace(/\n/g, '<br>');
                 if (currentMessageBlock) {
                     currentMessageBlock.appendChild(messageContent);
                 }
                 lastAuthorId = msg.autor;
             });
+            // **FIM DA LÓGICA CORRIGIDA**
             chatMessagesArea.scrollTop = chatMessagesArea.scrollHeight;
         }
     },
@@ -156,7 +160,6 @@ const ChatApp = {
             if (chatInput) chatInput.disabled = false;
             if (chatSendBtn) chatSendBtn.disabled = false;
             if (chatInput) chatInput.focus();
-
             if (chatContainer) {
                 chatContainer.classList.add('mobile-chat-active');
             }
@@ -176,11 +179,17 @@ const ChatApp = {
             if (!convo || !chatInput) return;
             const texto = chatInput.value.trim();
             if (!texto) return;
+
+            // **INÍCIO DA LÓGICA CORRIGIDA**
+            // A linha abaixo pega o VALOR COMPLETO do campo de texto e o adiciona
+            // como um ÚNICO objeto no array de mensagens. Não há divisão do texto aqui.
             convo.mensagens.push({
                 autor: ChatApp.state.currentUser.id,
                 texto: texto,
                 hora: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
             });
+            // **FIM DA LÓGICA CORRIGIDA**
+            
             chatInput.value = '';
             chatInput.focus();
             ChatApp.render.chatMessages();
@@ -304,6 +313,17 @@ const ChatApp = {
         }
         if(userSearchInput) {
             userSearchInput.addEventListener('input', (e) => this.handlers.filterAvailableUsers(e));
+        }
+        const collapseBtn = document.getElementById('collapse-sidebar-btn');
+        const expandBtn = document.getElementById('expand-sidebar-btn');
+        const chatContainer = document.querySelector('.chat-container');
+        if (collapseBtn && expandBtn && chatContainer) {
+            collapseBtn.addEventListener('click', () => {
+                chatContainer.classList.add('sidebar-collapsed');
+            });
+            expandBtn.addEventListener('click', () => {
+                chatContainer.classList.remove('sidebar-collapsed');
+            });
         }
         this.render.conversationsList();
         this.render.chatHeader();

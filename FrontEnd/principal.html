@@ -2,7 +2,7 @@
 <html lang="pt-BR" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-	scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>SENAI Community | Feed</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -62,10 +62,10 @@
         <i class="fas fa-chevron-down"></i>
       </div>
       <div class="dropdown-menu">
-    <a href="perfil.html"><i class="fas fa-user"></i> Meu Perfil</a>
-    <a href="#"><i class="fas fa-cog"></i> Configurações</a>
-    <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
-</div>
+        <a href="perfil.html"><i class="fas fa-user"></i> Meu Perfil</a>
+        <a href="#"><i class="fas fa-cog"></i> Configurações</a>
+        <a href="login.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
+      </div>
     </div>
   </header>
 
@@ -76,15 +76,15 @@
           <img src="./img/perfil.png" alt="Perfil">
           <div class="status online"></div>
         </div>
-        <h2>Usuário Temporario</h2>
+        <h2>Usuário Temporário</h2>
         <p class="user-title">Sem Curso</p>
         <div class="user-stats">
           <div class="stat">
-            <strong>0</strong>
+            <strong>3</strong>
             <span>Conexões</span>
           </div>
           <div class="stat">
-            <strong>0</strong>
+            <strong>1</strong>
             <span>Projetos</span>
           </div>
         </div>
@@ -99,84 +99,84 @@
       </nav>
       
       <div class="online-friends">
-          </div>
+      </div>
     </aside>
 
     <main class="main-content">
       <div class="post-creator">
-    <div class="post-creator-simple">
-        <div class="post-creator-trigger">
-            <div class="post-icon">
-                <img src="./img/perfil.png" alt="Vinicius G.">
+        <div class="post-creator-simple">
+            <div class="post-creator-trigger">
+                <div class="post-icon">
+                    <img src="./img/perfil.png" alt="Vinicius G.">
+                </div>
+                <input type="text" placeholder="Começar publicação" readonly>
             </div>
-            <input type="text" placeholder="Começar publicação" readonly>
+            <div class="post-options">
+                <button class="option-btn" data-type="photo"><i class="fas fa-image"></i> Foto</button>
+                <button class="option-btn" data-type="video"><i class="fas fa-video"></i> Vídeo</button>
+                <button class="option-btn" data-type="code"><i class="fas fa-code"></i> Código</button>
+            </div>
         </div>
-        <div class="post-options">
-            <button class="option-btn" data-type="photo"><i class="fas fa-image"></i> Foto</button>
-            <button class="option-btn" data-type="video"><i class="fas fa-video"></i> Vídeo</button>
-            <button class="option-btn" data-type="code"><i class="fas fa-code"></i> Código</button>
+        <div class="post-creator-expanded">
+            <div class="post-editor-content">
+                <div class="editor-header">
+                    <h3>Criar Publicação</h3>
+                </div>
+                <textarea class="editor-textarea" placeholder="No que você está pensando, Usuário?"></textarea>
+                <div class="media-preview-container"></div>
+            </div>
+            <div class="post-editor-footer">
+                <div class="editor-options">
+                    <button class="option-btn" data-type="photo" title="Adicionar foto"><i class="fas fa-image"></i></button>
+                    <button class="option-btn" data-type="video" title="Adicionar vídeo"><i class="fas fa-video"></i></button>
+                </div>
+                <div class="editor-actions">
+                    <button class="cancel-btn">Cancelar</button>
+                    <button class="publish-btn" disabled>Publicar</button>
+                </div>
+            </div>
         </div>
-    </div>
-<div class="post-creator-expanded">
-    <div class="post-editor-content">
-        <div class="editor-header">
-            <h3>Criar Publicação</h3>
-        </div>
-        <textarea class="editor-textarea" placeholder="No que você está pensando, Vinicius G.?"></textarea>
-        <div class="media-preview-container"></div>
-    </div>
-    <div class="post-editor-footer">
-        <div class="editor-options">
-            <button class="option-btn" data-type="photo" title="Adicionar foto"><i class="fas fa-image"></i></button>
-            <button class="option-btn" data-type="video" title="Adicionar vídeo"><i class="fas fa-video"></i></button>
-        </div>
-        <div class="editor-actions">
-            <button class="cancel-btn">Cancelar</button>
-            <button class="publish-btn" disabled>Publicar</button>
-        </div>
-    </div>
-</div>
-</div> <div class="feed-separator">
-    <hr/>
-</div>
-      <div class="posts-container">
-        </div>
+      </div>
+      <div class="feed-separator"><hr/></div>
+      <div class="posts-container"></div>
     </main>
+
     <aside class="right-sidebar">
-    <div class="widget-card" id="upcoming-events-widget">
-    </div>
-   
-    <div class="widget-card" id="who-to-follow-widget">
+      <div class="widget-card" id="upcoming-events-widget"></div>
+     
+      <div class="widget-card" id="who-to-follow-widget">
         <div class="widget-header">
-            <h3><i class="fas fa-user-plus"></i> Quem Seguir</h3>
+            <h3><i class="fas fa-user-plus"></i> Sugestão Seguir</h3>
             <a href="#" class="see-all">Ver todos</a>
         </div>
         <div class="follow-list">
             <div class="follow-item">
-                <div class="follow-avatar">
-                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Ana">
-                </div>
-                <div class="follow-info">
-                    <h4>Ana Silva</h4>
-                    <span>Engenheira de Software</span>
-                </div>
+                <a href="perfil.html?id=ana" class="follow-link">
+                    <div class="follow-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Ana Silva">
+                    </div>
+                    <div class="follow-info">
+                        <h4>Ana Silva</h4>
+                        <span>Engenheira de Software</span>
+                    </div>
+                </a>
                 <button class="follow-btn"><i class="fas fa-plus"></i></button>
             </div>
             <div class="follow-item">
-                <div class="follow-avatar">
-                    <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Carlos">
-                </div>
-                <div class="follow-info">
-                    <h4>Carlos Lima</h4>
-                    <span>Especialista em Redes</span>
-                </div>
+                <a href="perfil.html?id=miguel" class="follow-link">
+                    <div class="follow-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Miguel Piscki">
+                    </div>
+                    <div class="follow-info">
+                        <h4>Miguel Piscki</h4>
+                        <span>Especialista em IoT</span>
+                    </div>
+                </a>
                 <button class="follow-btn"><i class="fas fa-plus"></i></button>
             </div>
         </div>
-    </div>
-  </aside>
+      </div>
+      </aside>
   </div>
-
-  
 </body>
 </html>
