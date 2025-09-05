@@ -176,19 +176,17 @@
  text-overflow: ellipsis; white-space: nowrap; overflow: hidden;
 }
 .group-last-msg {
- font-size: 0.9rem; 
- color: var(--text-secondary);
- margin-top: 2px; 
+    font-size: 0.9rem; 
+    color: var(--text-secondary);
+    margin-top: 2px; 
 
- /* Propriedades que permitem a quebra de linha */
- white-space: normal;
- overflow-wrap: break-word;
- word-break: break-word;
-
- /* Removemos as propriedades que cortavam o texto */
- /* text-overflow: ellipsis; */
- /* overflow: hidden; */
- /* max-width: 220px; */
+    /* --- CORREÇÃO APLICADA --- */
+    /* Força o texto a ficar em uma única linha */
+    white-space: nowrap;
+    /* Esconde o texto que transborda o container */
+    overflow: hidden;
+    /* Adiciona "..." ao final do texto cortado */
+    text-overflow: ellipsis;
 }
 .group-last-msg strong { color: var(--text-primary); }
 
@@ -303,7 +301,11 @@
     margin-top: 4px;
     line-height: 1.5;
     color: var(--text-primary);
-    overflow-wrap: break-word;
+
+    /* --- CORREÇÃO APLICADA --- */
+    overflow-wrap: break-word; /* Mantém a quebra para palavras longas */
+    word-break: break-all;     /* Força a quebra de qualquer texto para evitar estouro */
+    max-width: 100%;           /* Garante que o balão não ultrapasse o container pai */
 }
 .message-group.me .message-content {
     background: var(--accent-primary);

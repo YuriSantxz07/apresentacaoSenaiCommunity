@@ -1,8 +1,8 @@
 const ChatApp = {
     state: {
-        currentUser: { id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
+        currentUser: { id: 1, nome: "Usuário", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
         allUsers: [
-            { id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
+            { id: 1, nome: "Usuário", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
             { id: 2, nome: "Miguel Piscki", avatar: "https://randomuser.me/api/portraits/men/22.jpg" },
             { id: 3, nome: "Ana Silva", avatar: "https://randomuser.me/api/portraits/women/33.jpg" },
             { id: 4, nome: "Matheus B.", avatar: "https://randomuser.me/api/portraits/men/45.jpg" },
@@ -14,7 +14,7 @@ const ChatApp = {
         conversations: [
             {
                 id: 'g1', type: 'group', nome: "Projeto IoT", avatar: "./img/unnamed.png",
-                membros: [{ id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" }, { id: 2, nome: "Miguel Piscki", avatar: "https://randomuser.me/api/portraits/men/22.jpg" }, { id: 3, nome: "Ana Silva", avatar: "https://randomuser.me/api/portraits/women/33.jpg" }],
+                membros: [{ id: 1, nome: "Usuário", avatar: "https://randomuser.me/api/portraits/men/32.jpg" }, { id: 2, nome: "Miguel Piscki", avatar: "https://randomuser.me/api/portraits/men/22.jpg" }, { id: 3, nome: "Ana Silva", avatar: "https://randomuser.me/api/portraits/women/33.jpg" }],
                 mensagens: [
                     { autor: 2, texto: "Oi pessoal, novidades do projeto?", hora: "19:01" },
                     { autor: 1, texto: "Ainda não, mas terminei o layout!", hora: "19:02" },
@@ -25,7 +25,7 @@ const ChatApp = {
             },
             {
                 id: 'g2', type: 'group', nome: "PrecisionCraft", avatar: "./img/cnc.png",
-                membros: [{ id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },  { id: 2, nome: "Julia", avatar: "https://randomuser.me/api/portraits/women/48.jpg" }, 
+                membros: [{ id: 1, nome: "Usuário", avatar: "https://randomuser.me/api/portraits/men/32.jpg" },  { id: 2, nome: "Julia", avatar: "https://randomuser.me/api/portraits/women/48.jpg" }, 
                     { id: 8, nome: "Carlos", avatar: "https://randomuser.me/api/portraits/men/51.jpg" }, { id: 9, nome: "Laura", avatar: "https://randomuser.me/api/portraits/women/55.jpg" }
                 ],
                 mensagens: [ { autor: 6, texto: "Olá Pessoal!", hora: "11:22" } ]
@@ -33,7 +33,7 @@ const ChatApp = {
             {
                 id: 'dm1', type: 'dm',
                 otherUser: { id: 4, nome: "Eliezer B.", avatar: "https://randomuser.me/api/portraits/men/45.jpg", online: true },
-                membros: [{ id: 1, nome: "Vinicius Gallo Santos", avatar: "https://randomuser.me/api/portraits/men/32.jpg" }, { id: 4, nome: "Eliezer B.", avatar: "https://randomuser.me/api/portraits/men/45.jpg" }],
+                membros: [{ id: 1, nome: "Usuário", avatar: "https://randomuser.me/api/portraits/men/32.jpg" }, { id: 4, nome: "Eliezer B.", avatar: "https://randomuser.me/api/portraits/men/45.jpg" }],
                 mensagens: [
                     { autor: 4, texto: "E aí,Tudo certo?", hora: "14:50"},
                     { autor: 1, texto: "Opa, tudo joia e você?", hora: "14:51"}
