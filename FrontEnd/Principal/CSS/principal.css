@@ -1001,4 +1001,50 @@ body {
 .post-author-link:hover {
     text-decoration: underline;
 }
+/* Adicione este código ao final do arquivo */
 
+.online-friends .friend {
+    text-decoration: none; /* Remove o sublinhado do link */
+    color: var(--text-primary); /* Garante que o texto tenha a cor principal */
+}
+
+.online-friends .friend:hover span {
+    text-decoration: underline; /* Opcional: Adiciona sublinhado ao passar o mouse */
+}
+/* Adicione este código ao final do arquivo principal.css */
+
+#who-to-follow-widget .follow-item {
+    display: flex;
+    align-items: center;
+}
+
+.follow-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit; /* Herda a cor do texto normal, em vez de ser azul */
+    flex-grow: 1;
+    padding: 0.25rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.follow-link:hover {
+    background-color: var(--bg-tertiary);
+}
+/* --- CÓDIGO DE RESPONSIVIDADE PARA CELULAR --- */
+
+/* ... (código existente da responsividade) ... */
+
+@media (max-width: 768px) {
+    
+    /* ... (regras existentes para .nav-rail, .chat-container, etc.) ... */
+
+    /* ADICIONE ESTA NOVA REGRA PARA ESCONDER OS BOTÕES NO MOBILE */
+    #collapse-sidebar-btn, #expand-sidebar-btn {
+        display: none !important; /* Esconde os botões de recolher/expandir */
+    }
+}
+
+/* ... (resto do código, se houver) ... */
